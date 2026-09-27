@@ -22,6 +22,9 @@ ks_test ---------- direct KS transport diagnostic
 xtremeasio_diag -- endpoint selection, gain, probing, shared telemetry
 ```
 
+## Independent JBL-only driver
+
+`src/asio_driver.cpp` builds as `XtremeASIO_JBL.dll` with CLSID `{A9A37F2D-6E4B-4C5B-9A1D-2E8F7B6C4D10}` and the separate ASIO registry identity `XtremeASIO JBL Only`. It exposes zero inputs and two float32 outputs at the JBL's native 48 kHz, using fixed 96-frame ASIO/KS buffers and two outstanding KS packets. It never loads or opens the Behringer ASIO driver. Its gain comes from the shared YAML file.
 ## Aggregate ASIO driver
 
 `src/aggregate_asio_driver.cpp` implements `IASIO` and a small COM class factory. It loads the installed Behringer UMC ASIO DLL through its class factory, avoiding cross-apartment proxying, and accepts 44.1 or 48 kHz plus 64, 128, 256, or 512-frame power-of-two host buffers. The JBL KS pin remains at native 48 kHz; the existing preallocated adaptive bridge also performs nominal conversion when the host uses 44.1 kHz.

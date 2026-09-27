@@ -1,9 +1,15 @@
 # XtremeASIO
 
-Minimal Windows x64 aggregate ASIO driver for live playing through a Behringer UMC204HD and a JBL Xtreme 4 USB audio function exposed as `Zgmicro AUDIO`.
+Minimal Windows x64 ASIO drivers for a Behringer UMC204HD plus JBL Xtreme 4 aggregate device and an independent JBL-only direct-KS device. The JBL USB audio function is exposed as `Zgmicro AUDIO`.
 
 The Behringer native ASIO driver is the 48 kHz master clock. XtremeASIO exposes its two inputs and four outputs, adds a stereo JBL output pair, and sends that pair directly to the physical Zgmicro Kernel Streaming (KS) render pin. WASAPI Exclusive remains available only in the standalone diagnostic backend.
 
+## Driver choices
+
+- **XtremeASIO UMC + JBL** (`XtremeASIO.dll`): 2 UMC inputs, 4 UMC outputs, and 2 JBL outputs with selectable 64/128/256/512-sample host buffers.
+- **XtremeASIO JBL Only** (`XtremeASIO_JBL.dll`): zero inputs and one stereo JBL output using the previously proven fixed 96-frame, 48 kHz direct-KS path. It does not open the Behringer driver.
+
+Both drivers read `jbl_gain_db` from the same per-user YAML. JBL-only intentionally requires `sample_rate: 48000`; the aggregate driver additionally supports a 44.1 kHz host through nominal conversion to the JBL's native 48 kHz stream.
 ## Current validated result
 
 - ASIO interface: 48 kHz with selectable 64, 128, 256, or 512-sample host buffers; 64 is preferred by default.
@@ -36,6 +42,7 @@ cmake --build build --config Release
 Release artifacts:
 
 - `build\Release\XtremeASIO.dll` - 64-bit aggregate ASIO COM driver
+- `build\Release\XtremeASIO_JBL.dll` - independent 64-bit JBL-only ASIO COM driver
 - `build\Release\xtremeasio_diag.exe` - JBL endpoint, gain, WASAPI probe, and telemetry utility
 - `build\Release\asio_smoke.exe` - direct aggregate-ASIO smoke host
 - `build\Release\asio_probe.exe` - native ASIO capability probe
@@ -83,13 +90,14 @@ Close Ableton first. In an **Administrator PowerShell** from this directory:
 
 ```powershell
 & "$env:WINDIR\System32\regsvr32.exe" "$(Resolve-Path build\Release\XtremeASIO.dll)"
+& "$env:WINDIR\System32\regsvr32.exe" "$(Resolve-Path build\Release\XtremeASIO_JBL.dll)"
 ```
 
 Then in Ableton Live:
 
 1. Open **Options > Preferences > Audio**.
 2. Set **Driver Type** to **ASIO**.
-3. Select **XtremeASIO UMC + JBL**. If the older name **XtremeASIO JBL USB** remains visible, re-register the DLL as Administrator and restart Live.
+3. Select **XtremeASIO UMC + JBL** for the aggregate interface or **XtremeASIO JBL Only** when the Behringer is not needed. If an older label remains visible, re-register both DLLs as Administrator and restart Live.
 4. Use **48000 Hz**, then choose **64**, **128**, **256**, or **512** samples. Use 64 for live playing and 128-512 for progressively heavier mixing sessions.
 5. Open **Input Config** and enable mono inputs 1 and 2 (and stereo 1/2 if desired).
 6. Open **Output Config** and enable the pairs you need.
@@ -113,6 +121,7 @@ The JBL KS pin is exclusive. Close other applications using Zgmicro and route no
 To unregister:
 
 ```powershell
+& "$env:WINDIR\System32\regsvr32.exe" /u "$(Resolve-Path build\Release\XtremeASIO_JBL.dll)"
 & "$env:WINDIR\System32\regsvr32.exe" /u "$(Resolve-Path build\Release\XtremeASIO.dll)"
 ```
 

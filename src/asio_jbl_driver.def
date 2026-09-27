@@ -1,0 +1,6 @@
+LIBRARY "XtremeASIO_JBL"
+EXPORTS
+  DllCanUnloadNow PRIVATE
+  DllGetClassObject PRIVATE
+  DllRegisterServer PRIVATE
+  DllUnregisterServer PRIVATE

@@ -16,11 +16,11 @@
 
 namespace {
 
-// {2D926C13-F819-4F32-BD5D-8148E85913AB}
-constexpr CLSID kDriverClsid{0x2d926c13, 0xf819, 0x4f32,
-  {0xbd, 0x5d, 0x81, 0x48, 0xe8, 0x59, 0x13, 0xab}};
-constexpr wchar_t kDriverName[] = L"XtremeASIO JBL USB";
-constexpr wchar_t kAsioRegistryPath[] = L"SOFTWARE\\ASIO\\XtremeASIO JBL USB";
+// {A9A37F2D-6E4B-4C5B-9A1D-2E8F7B6C4D10}
+constexpr CLSID kDriverClsid{0xa9a37f2d, 0x6e4b, 0x4c5b,
+  {0x9a, 0x1d, 0x2e, 0x8f, 0x7b, 0x6c, 0x4d, 0x10}};
+constexpr wchar_t kDriverName[] = L"XtremeASIO JBL Only";
+constexpr wchar_t kAsioRegistryPath[] = L"SOFTWARE\\ASIO\\XtremeASIO JBL Only";
 
 HMODULE g_module{};
 std::atomic<long> g_object_count{0};
@@ -76,7 +76,12 @@ public:
   ASIOBool init(void*) override {
     try {
       (void)xtreme::SelectEndpoint();
-      const auto gain_db = xtreme::ReadOutputGainDb();
+      const auto settings = xtreme::ReadDriverSettings();
+      if (settings.sample_rate != 48000) {
+        SetError("JBL-only mode requires sample_rate: 48000");
+        return ASIOFalse;
+      }
+      const auto gain_db = settings.jbl_gain_db;
       output_gain_ = static_cast<float>(std::pow(10.0, gain_db / 20.0));
       initialized_ = true;
       SetError("");
@@ -87,8 +92,8 @@ public:
     }
   }
 
-  void getDriverName(char* name) override { CopyText(name, 32, "XtremeASIO JBL USB"); }
-  long getDriverVersion() override { return 2; }
+  void getDriverName(char* name) override { CopyText(name, 32, "XtremeASIO JBL Only"); }
+  long getDriverVersion() override { return 3; }
   void getErrorMessage(char* message) override { CopyText(message, 124, error_.data()); }
 
   ASIOError start() override {

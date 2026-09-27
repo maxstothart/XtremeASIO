@@ -56,6 +56,26 @@ if(XTREMEASIO_BUILD_DRIVER)
   target_link_libraries(xtremeasio_driver PRIVATE xtreme_wasapi xtreme_ks ole32 uuid)
   set_target_properties(xtremeasio_driver PROPERTIES OUTPUT_NAME "XtremeASIO")
 
+  add_library(xtremeasio_jbl_driver SHARED
+    src/asio_driver.cpp
+    src/asio_jbl_driver.def
+  )
+  target_include_directories(xtremeasio_jbl_driver PRIVATE
+    include
+    third_party/asio-sdk/common
+  )
+  target_compile_features(xtremeasio_jbl_driver PRIVATE cxx_std_20)
+  target_compile_definitions(xtremeasio_jbl_driver PRIVATE UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)
+  target_compile_options(xtremeasio_jbl_driver PRIVATE /W4 /permissive- /EHsc /utf-8)
+  target_link_libraries(xtremeasio_jbl_driver PRIVATE xtreme_wasapi xtreme_ks ole32 uuid)
+  set_target_properties(xtremeasio_jbl_driver PROPERTIES OUTPUT_NAME "XtremeASIO_JBL")
+
+  add_executable(jbl_asio_smoke src/jbl_asio_smoke_main.cpp)
+  target_include_directories(jbl_asio_smoke PRIVATE third_party/asio-sdk/common include)
+  target_compile_features(jbl_asio_smoke PRIVATE cxx_std_20)
+  target_compile_definitions(jbl_asio_smoke PRIVATE UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)
+  target_compile_options(jbl_asio_smoke PRIVATE /W4 /permissive- /EHsc /utf-8)
+  target_link_libraries(jbl_asio_smoke PRIVATE xtreme_wasapi ole32)
   add_executable(asio_smoke src/asio_smoke_main.cpp)
   target_include_directories(asio_smoke PRIVATE third_party/asio-sdk/common include)
   target_compile_features(asio_smoke PRIVATE cxx_std_20)
