@@ -1,0 +1,5 @@
+/build/
+/build-backend/
+/.vs/
+*.user
+*.suo

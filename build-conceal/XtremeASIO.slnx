@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+	<Configurations>
+		<BuildType Name="Debug"/>
+		<BuildType Name="Release"/>
+		<BuildType Name="MinSizeRel"/>
+		<BuildType Name="RelWithDebInfo"/>
+		<Platform Name="x64"/>
+	</Configurations>
+	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="0a0c4be9-261e-3088-9c85-19514a09fd06" DefaultStartup="true">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="asio_probe.vcxproj"/>
+		<BuildDependency Project="asio_smoke.vcxproj"/>
+		<BuildDependency Project="ks_test.vcxproj"/>
+		<BuildDependency Project="wasapi_test.vcxproj"/>
+		<BuildDependency Project="xtreme_ks.vcxproj"/>
+		<BuildDependency Project="xtreme_wasapi.vcxproj"/>
+		<BuildDependency Project="xtremeasio_diag.vcxproj"/>
+		<BuildDependency Project="xtremeasio_driver.vcxproj"/>
+		<Build Solution="Debug|*" Project="false"/>
+		<Build Solution="Release|*" Project="false"/>
+		<Build Solution="MinSizeRel|*" Project="false"/>
+		<Build Solution="RelWithDebInfo|*" Project="false"/>
+	</Project>
+	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="b0c92bf1-4342-3526-a72e-12f450a8c1e8"/>
+	<Project Path="asio_probe.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="4fc3a445-1427-397c-8016-1e1215ec7600">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="asio_smoke.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="a695ebdb-7e0b-3fa2-ada3-b180a6c350ad">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="xtreme_wasapi.vcxproj"/>
+	</Project>
+	<Project Path="ks_test.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="f6358543-49fd-3095-9695-70840c244d22">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="wasapi_test.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="97dcb963-cbc2-3a05-8e93-3402a444d4d4">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="xtreme_wasapi.vcxproj"/>
+	</Project>
+	<Project Path="xtreme_ks.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="1506ee4e-ba6b-3e10-8197-3fd21c882ac6">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="xtreme_wasapi.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="08633f52-9735-39b3-96d7-c97ab4dcd435">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="xtremeasio_diag.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="c0af0535-beb8-3406-8df8-681ec64aa3d4">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="xtreme_wasapi.vcxproj"/>
+	</Project>
+	<Project Path="xtremeasio_driver.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="c54b86a7-e0fe-3251-9f30-0c6c831d5a2e">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="xtreme_ks.vcxproj"/>
+		<BuildDependency Project="xtreme_wasapi.vcxproj"/>
+	</Project>
+</Solution>

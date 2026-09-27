@@ -1,0 +1,10 @@
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/xtreme_wasapi.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/xtremeasio_diag.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/wasapi_test.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/ks_test.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/xtreme_ks.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/xtremeasio_driver.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/asio_smoke.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/asio_probe.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/ALL_BUILD.dir
+D:/C++/XtremeASIO/build-conceal/CMakeFiles/ZERO_CHECK.dir

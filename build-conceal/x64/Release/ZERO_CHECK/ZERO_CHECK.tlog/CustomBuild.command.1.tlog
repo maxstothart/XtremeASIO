@@ -1,0 +1,10 @@
+^D:\C++\XTREMEASIO\BUILD-CONCEAL\CMAKEFILES\A06FBE38F1A79DB6C80D00AA5C509F64\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/C++/XtremeASIO -BD:/C++/XtremeASIO/build-conceal --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/C++/XtremeASIO/build-conceal/XtremeASIO.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

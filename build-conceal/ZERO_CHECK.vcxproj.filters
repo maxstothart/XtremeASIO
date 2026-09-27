@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\C++\XtremeASIO\build-conceal\CMakeFiles\a06fbe38f1a79db6c80d00aa5c509f64\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{FBAD3B32-6BEB-3911-AD22-DEE6A8562FC3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
